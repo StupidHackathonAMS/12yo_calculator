@@ -80,7 +80,7 @@
 	      }
 	      break;
 	    case '=':
-	      if (display.length > 0) {
+	      if (display.length > 0 && display.match(/[0-9.]/)) {
 	        display = vulgar_options[Math.round(Math.random() * (vulgar_options.length - 1))];
 	      }
 	      break;
