@@ -19,7 +19,7 @@
     "webpack": "^1.13.0"
   },
   "scripts": {
-    "watch": "watch 'npm run build' . -d --interval=1",
+    "watch": "watch 'npm run build' ./src -d --interval=1",
     "build": "webpack"
   },
   "repository": {
