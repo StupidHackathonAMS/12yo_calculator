@@ -29,6 +29,9 @@ const buttonClicked = (label) => {
         display = vulgar_options[Math.round(Math.random() * (vulgar_options.length - 1))]
       }
       break
+    case 'sqrt':
+      display = 'ERR'
+      break
     case 'CLR':
       display = ''
       break
