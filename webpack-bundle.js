@@ -71,6 +71,10 @@
 	};
 
 	var buttonClicked = function buttonClicked(label) {
+	  if (display === 'ERR' && label !== 'CLR') {
+	    return;
+	  }
+
 	  switch (label) {
 	    case '0':
 	    case '1':
@@ -85,7 +89,11 @@
 	    case '00':
 	    case '.':
 	      if (display.length > 0 && display[0].match(/[1-9]/)) {
-	        display += label;
+	        if (display.length > 8) {
+	          display = 'ERR';
+	        } else {
+	          display += label;
+	        }
 	      } else {
 	        display = label[0];
 	      }
