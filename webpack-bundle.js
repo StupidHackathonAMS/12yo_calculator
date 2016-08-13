@@ -56,9 +56,19 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var display = "";
+	var display = "0";
 
 	var vulgar_options = ['PENIS', 'BOOBIES'];
+
+	var icon_map = {
+	  '*': 'times',
+	  '/': 'divide',
+	  '+': 'plus',
+	  '-': 'minus',
+	  '.': 'dot',
+	  '=': 'equal',
+	  'sqrt': 'square'
+	};
 
 	var buttonClicked = function buttonClicked(label) {
 	  switch (label) {
@@ -73,10 +83,11 @@
 	    case '8':
 	    case '9':
 	    case '00':
-	      if (display.length > 0 && display[display.length - 1].match(/[0-9]/)) {
+	    case '.':
+	      if (display.length > 0 && display[0].match(/[1-9]/)) {
 	        display += label;
 	      } else {
-	        display = label;
+	        display = label[0];
 	      }
 	      break;
 	    case '=':
@@ -88,10 +99,16 @@
 	      display = 'ERR';
 	      break;
 	    case 'CLR':
-	      display = '';
+	      display = '0';
+	      break;
+	    case '+':
+	    case '-':
+	    case '/':
+	    case '*':
+	      display = label;
 	      break;
 	    default:
-	      display = label;
+	      display = 'ERR';
 	  }
 
 	  render();
@@ -102,55 +119,99 @@
 	    'div',
 	    { onClick: function onClick(event) {
 	        return buttonClicked(props.label);
-	      } },
-	    props.label
+	      }, className: 'button' },
+	    _react2.default.createElement('img', { src: 'design/' + (icon_map[props.label] || props.label) + '.png' })
 	  );
 	};
 
 	var Calculator = function Calculator(props) {
 	  return _react2.default.createElement(
 	    'div',
-	    null,
+	    { className: 'calculator' },
+	    _react2.default.createElement('img', { className: 'solar_panel', src: 'design/solar_panel.png' }),
 	    _react2.default.createElement(
 	      'div',
 	      { className: 'display' },
 	      props.display
 	    ),
+	    _react2.default.createElement('img', { className: 'sliders', src: 'design/button.png' }),
 	    _react2.default.createElement(
 	      'div',
-	      { className: 'row' },
-	      _react2.default.createElement(Button, { label: '7' }),
-	      _react2.default.createElement(Button, { label: '8' }),
-	      _react2.default.createElement(Button, { label: '9' }),
-	      _react2.default.createElement(Button, { label: 'sqrt' }),
-	      _react2.default.createElement(Button, { label: 'CLR' })
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'row' },
-	      _react2.default.createElement(Button, { label: '4' }),
-	      _react2.default.createElement(Button, { label: '5' }),
-	      _react2.default.createElement(Button, { label: '6' }),
-	      _react2.default.createElement(Button, { label: '-' }),
-	      _react2.default.createElement(Button, { label: '/' })
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'row' },
-	      _react2.default.createElement(Button, { label: '1' }),
-	      _react2.default.createElement(Button, { label: '2' }),
-	      _react2.default.createElement(Button, { label: '3' }),
-	      _react2.default.createElement(Button, { label: '+' }),
-	      _react2.default.createElement(Button, { label: '*' })
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'row' },
-	      _react2.default.createElement(Button, { label: '0' }),
-	      _react2.default.createElement(Button, { label: '00' }),
-	      _react2.default.createElement(Button, { label: '.' }),
-	      _react2.default.createElement(Button, { label: '+' }),
-	      _react2.default.createElement(Button, { label: '=' })
+	      { className: 'buttons' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'top_buttons' },
+	        _react2.default.createElement(Button, { label: 'eex' }),
+	        _react2.default.createElement(Button, { label: 'm_minus' }),
+	        _react2.default.createElement(Button, { label: 'm-plus' }),
+	        _react2.default.createElement(Button, { label: 'mrc' }),
+	        _react2.default.createElement(Button, { label: 'mu' })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'top_buttons' },
+	        _react2.default.createElement(Button, { label: 'one_x' }),
+	        _react2.default.createElement(Button, { label: 'percent_t' }),
+	        _react2.default.createElement(Button, { label: 'percent' }),
+	        _react2.default.createElement(Button, { label: 'plus_minus' }),
+	        _react2.default.createElement(Button, { label: 'triangle_percent' })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'row' },
+	        _react2.default.createElement(Button, { label: '7' }),
+	        _react2.default.createElement(Button, { label: '8' }),
+	        _react2.default.createElement(Button, { label: '9' }),
+	        _react2.default.createElement(Button, { label: 'sqrt' }),
+	        _react2.default.createElement(Button, { label: 'CLR' })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'row' },
+	        _react2.default.createElement(Button, { label: '4' }),
+	        _react2.default.createElement(Button, { label: '5' }),
+	        _react2.default.createElement(Button, { label: '6' }),
+	        _react2.default.createElement(Button, { label: '-' }),
+	        _react2.default.createElement(Button, { label: '/' })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'part_row' },
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(Button, { label: '1' }),
+	          _react2.default.createElement(Button, { label: '2' }),
+	          _react2.default.createElement(Button, { label: '3' })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(Button, { label: '0' }),
+	          _react2.default.createElement(Button, { label: '00' }),
+	          _react2.default.createElement(Button, { label: '.' })
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'part_row' },
+	        _react2.default.createElement(Button, { label: '+' })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'part_row' },
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(Button, { label: '*' })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(Button, { label: '=' })
+	        )
+	      ),
+	      _react2.default.createElement('div', { className: 'row' })
 	    )
 	  );
 	};

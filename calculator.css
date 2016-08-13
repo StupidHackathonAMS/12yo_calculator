@@ -1,25 +1,77 @@
 @font-face {
   font-family: "TTB";
-  src: url('./TickingTimebombBB_ital.ttf');
+  src: url('./TickingTimebombBB.ttf');
 }
 
-.row div {
+.calculator {
+  width: 438px;
+  height: 784px;
+  margin-left: calc(50% - 219px);
+  background-image: url('design/panel.png');
+}
+
+.top_buttons {
+  margin: 5px 0 !important;
+}
+
+.top_buttons:nth-of-type(2) {
+  margin-bottom: 15px !important;
+}
+
+.top_buttons .button {
+  margin: 0 3px 0 3px !important;
+}
+
+.solar_panel {
+  margin: 50px 0 0 267px;
+}
+
+.buttons {
+  margin: 48px 0 0px 25px;
+}
+
+.buttons .button:nth-of-type(1),
+.buttons .button:nth-of-type(2),
+.buttons .button:nth-of-type(4),
+.buttons .button:nth-of-type(5) {
+  margin-right: -2px;
+  margin-bottom: -2px;
+}
+
+.row {
+  margin-bottom: -2px;
+}
+
+.buttons .button:nth-of-type(3) {
+  margin-right: 5px;
+  margin-bottom: -2px;
+}
+
+.part_row {
   display: inline-block;
-  padding: 9px;
+}
+
+.button, .button {
+  display: inline-block;
   cursor: pointer;
-  border: 1px solid black;
-  width: 30px;
   user-select: none;
   -webkit-user-select: none;
 }
 
 .display {
+  background-image: url('design/display.png');
   font-family: TTB;
-  width: 230px;
-  padding: 3px 10px;
-  background: #DDD;
-  height: 40px;
-  line-height: 40px;
+  /* width: 418px; */
+  /* height: 96px; */
+  width: 338px;
+  height: 90px;
+  margin: 20px 0 0 10px;
+  padding: 3px 40px;
+  line-height: 96px;
   text-align: right;
-  font-size: 30px;
+  font-size: 55px;
+}
+
+.sliders {
+  margin: 20px 0 0 150px;
 }
